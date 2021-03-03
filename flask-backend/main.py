@@ -10,13 +10,19 @@ def react_entrypoint():
 
 
 # To use this API:
-# http://localhost:5000/api/news?zip_code=12345
+# Endpoint: http://localhost:5000/api/news
+# Params:
+# - q: query/search term
+# - zip_code: zip code used for location-based results
 @app.route("/api/news")
 def get_news():
-    requested_zip_code = flask.request.args.get('zip_code')
-    if requested_zip_code is None:
-        flask.abort(400, "The 'zip_code' query param is required")
-    return news.retrieve_news(requested_zip_code)
+    query = flask.request.args.get('q')
+    zip_code = flask.request.args.get('zip_code')
+
+    if query is None:
+        flask.abort(400, "The 'q' query param is required")
+
+    return news.retrieve_news(query, zip_code)
 
 
 app.run(debug=True)

@@ -1,4 +1,5 @@
 import requests
+import location_search
 from env_config import BING_API_KEY
 
 BING_NEWS_SEARCH_URL = "https://api.bing.microsoft.com/v7.0/news/search"
@@ -8,9 +9,9 @@ FRESHNESS_WEEK = "Week"
 FRESHNESS_MONTH = "Month"
 
 
-def retrieve_news(search_term):
+def retrieve_news(search_term, zip_code):
     print(f"A search for ['{search_term}'] was performed")
-    bing_news = retrieve_bing_news(search_term, 5)
+    bing_news = retrieve_bing_news(search_term, zip_code, 5)
 
     salesfox_news = []
     for news_item in bing_news.get("value"):
@@ -23,10 +24,18 @@ def retrieve_news(search_term):
     }
 
 
-def retrieve_bing_news(search_term, max_results, freshness=FRESHNESS_WEEK):
+def retrieve_bing_news(search_term, zip_code=None, max_results=10, freshness=FRESHNESS_WEEK):
     headers = {
         "Ocp-Apim-Subscription-Key": BING_API_KEY
     }
+
+    if zip_code is not None:
+        lat_and_long = location_search.find_first_lat_and_long(zip_code)
+        if lat_and_long is not None:
+            latitude = lat_and_long.get(location_search.KEY_LATITUDE)
+            longitude = lat_and_long.get(location_search.KEY_LONGITUDE)
+            headers["X-Search-Location"] = create_location_header_value(latitude, longitude)
+
     params = {
         "q": search_term,
         "count": max_results,
@@ -47,3 +56,7 @@ def create_salesfox_news_item(external_news_item):
                 "link": external_news_item.get("url"),
                 "source": news_sources
             }
+
+
+def create_location_header_value(latitude, longitude, radius_meters=1000):
+    return f"lat:{latitude};long={longitude};re:{radius_meters}"
