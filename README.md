@@ -3,7 +3,14 @@
 - pip 21.0
 - pipenv 2020.11
 
-# Using `pipenv`
+# How to run the app
+```bash
+pipenv shell
+python ./flask-backend/main.py
+```
+The server is available at http://localhost:5000
+
+# How to use `pipenv`
 
 ## Start Environment
 ```bash
