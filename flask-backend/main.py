@@ -1,5 +1,6 @@
 import flask
 import news
+import companies
 
 app = flask.Flask("__main__")
 
@@ -22,6 +23,14 @@ def get_news():
         flask.abort(400, "The 'zip_code' query param is required")
     zip_code = int(requested_zip_code)
     return news.retrieve_news(zip_code)
+
+
+@app.route("/api/companies")
+def find_company():
+    company_name = flask.request.args.get('name')
+    if company_name is None:
+        flask.abort(400, "The 'name' query param is required")
+    return companies.find_companies_by_name(company_name)
 
 
 app.run(debug=True)
