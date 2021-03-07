@@ -1,9 +1,13 @@
 from pymongo import MongoClient
+from .company_env_config import MONGODB_URL, MONGODB_DATABASE_NAME, MONGODB_COMPANY_USER, MONGODB_COMPANY_PASSWORD
 
-MONGODB_URL = "localhost:27017"
-
-mongo_client = MongoClient(MONGODB_URL)
-pdl_datasets = mongo_client["pdl-datasets"]
+mongo_client = MongoClient(
+        MONGODB_URL,
+        username=MONGODB_COMPANY_USER,
+        password=MONGODB_COMPANY_PASSWORD,
+        authSource=MONGODB_DATABASE_NAME
+    )
+pdl_datasets = mongo_client[MONGODB_DATABASE_NAME]
 companies_collection = pdl_datasets.get_collection("companies")
 
 

@@ -6,6 +6,8 @@
 # How to run the app
 ```bash
 export SALESFOX_BING_API_KEY=<your api key>
+export SALESFOX_MONGODB_COMPANY_PASSWORD=<password in 1Password>
+
 pipenv shell
 python ./flask-backend/src/main.py
 ```
