@@ -6,13 +6,6 @@ KEY_LATITUDE = "latitude"
 KEY_LONGITUDE = "longitude"
 
 
-def extract_lat_and_long(location_entry):
-    return {
-        KEY_LATITUDE: location_entry.get(KEY_LATITUDE),
-        KEY_LONGITUDE: location_entry.get(KEY_LONGITUDE)
-    }
-
-
 def find_first_lat_and_long(zip_code):
     results = find_location(zip_code, 1)
     locations = results.get("records")
@@ -30,3 +23,10 @@ def find_location(search_term, max_results=10):
     }
     response = requests.get(url=OPEN_DATA_SOFT_URL, params=params)
     return response.json()
+
+
+def extract_lat_and_long(location_entry):
+    return {
+        KEY_LATITUDE: location_entry.get(KEY_LATITUDE),
+        KEY_LONGITUDE: location_entry.get(KEY_LONGITUDE)
+    }
