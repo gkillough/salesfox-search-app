@@ -3,7 +3,15 @@
 - pip 21.0
 - pipenv 2020.11
 
-# Using `pipenv`
+# How to run the app
+```bash
+export SALESFOX_BING_API_KEY=<your api key>
+pipenv shell
+python ./flask-backend/src/main.py
+```
+The server is available at http://localhost:5000
+
+# How to use `pipenv`
 
 ## Start Environment
 ```bash
