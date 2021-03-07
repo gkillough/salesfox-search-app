@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-from bson import json_util
 
 MONGODB_URL = "localhost:27017"
 
@@ -8,7 +7,7 @@ pdl_datasets = mongo_client["pdl-datasets"]
 companies_collection = pdl_datasets.get_collection("companies")
 
 
-def find_companies_by_name(company_name):
+def find_by_name(company_name):
     found_companies_cursor = companies_collection.find({"name": company_name})
     found_companies_list = cursor_to_list(found_companies_cursor)
     return {

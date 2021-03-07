@@ -1,6 +1,6 @@
 import flask
 from search_client.news import salesfox_news_client
-from search_client.company import companies
+from search_client.company import company_search_client
 
 app = flask.Flask("__main__")
 
@@ -31,7 +31,7 @@ def find_company():
     company_name = flask.request.args.get('name')
     if company_name is None:
         flask.abort(400, "The 'name' query param is required")
-    return companies.find_companies_by_name(company_name)
+    return company_search_client.find_by_name(company_name)
 
 
 app.run(debug=True)
