@@ -26,6 +26,10 @@ def get_news():
     return salesfox_news_client.retrieve_news(query, zip_code)
 
 
+# To use this API:
+# Endpoint: http://localhost:5000/api/companies
+# Params:
+# - name: company name to search for
 @app.route("/api/companies")
 def find_company():
     company_name = flask.request.args.get('name')
