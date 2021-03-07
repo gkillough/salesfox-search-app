@@ -7,7 +7,7 @@
 ```bash
 export SALESFOX_BING_API_KEY=<your api key>
 pipenv shell
-python ./flask-backend/main.py
+python ./flask-backend/src/main.py
 ```
 The server is available at http://localhost:5000
 

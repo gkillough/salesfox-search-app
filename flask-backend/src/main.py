@@ -1,5 +1,5 @@
 import flask
-import news
+from search_client.news import salesfox_news_client
 
 app = flask.Flask("__main__")
 
@@ -22,7 +22,7 @@ def get_news():
     if query is None:
         flask.abort(400, "The 'q' query param is required")
 
-    return news.retrieve_news(query, zip_code)
+    return salesfox_news_client.retrieve_news(query, zip_code)
 
 
 app.run(debug=True)
