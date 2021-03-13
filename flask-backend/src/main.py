@@ -1,6 +1,8 @@
 import flask
-from search_client.news import salesfox_news_client
+
 from search_client.company import company_search_client
+from search_client.news import salesfox_news_client
+from search_client.weather import salesfox_weather_client
 
 app = flask.Flask("__main__")
 
@@ -36,6 +38,14 @@ def find_company():
     if company_name is None:
         flask.abort(400, "The 'name' query param is required")
     return company_search_client.find_by_name(company_name)
+
+
+@app.route("/api/weather")
+def find_historical_weather():
+    zip_code = flask.request.args.get('zip_code')
+    if zip_code is None:
+        flask.abort(400, "The 'zip_code' query param is required")
+    return salesfox_weather_client.five_day(zip_code)
 
 
 app.run(debug=True)

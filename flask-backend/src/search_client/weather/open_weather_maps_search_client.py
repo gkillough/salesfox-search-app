@@ -3,31 +3,35 @@ import datetime
 import requests
 
 from .weather_env_config import OPEN_WEATHER_API_KEY
-from ..location import location_search_api_client
 
-OPEN_WEATHER_MAP_URL = "http://history.openweathermap.org/data/2.5"
-CITY_HISTORY_SPEC = "/history/city"
-
-
-def five_day_history_by(zip_code):
-    found_lat_and_long = location_search_api_client.find_first_lat_and_long(zip_code)
-    if found_lat_and_long is not None:
-        latitude = found_lat_and_long.get(location_search_api_client.KEY_LATITUDE)
-        longitude = found_lat_and_long.get(location_search_api_client.KEY_LONGITUDE)
-        request_url = f"{OPEN_WEATHER_MAP_URL}{CITY_HISTORY_SPEC}"
-        params = {
-            "lat": latitude,
-            "lon": longitude,
-            "appid": OPEN_WEATHER_API_KEY,
-            "type": "day",
-            "start": compute_epoch_minus_five_days(),
-            "cnt": 5
-        }
-        response = requests.get(url=request_url, params=params)
-        return response.json()
-    return None
+OPEN_WEATHER_MAP_URL = "https://api.openweathermap.org/data/2.5"
+HISTORICAL_API_SPEC = "/onecall/timemachine"
 
 
-def compute_epoch_minus_five_days():
+def request_weather_summary(latitude, longitude, timestamp=None):
+    params = {
+        "lat": latitude,
+        "lon": longitude,
+        "appid": OPEN_WEATHER_API_KEY,
+        "units": "imperial",
+    }
+
+    if timestamp is not None:
+        params["dt"] = timestamp
+    else:
+        params["dt"] = compute_weather_timestamp_minus_days(0)
+
+    request_url = f"{OPEN_WEATHER_MAP_URL}{HISTORICAL_API_SPEC}"
+    response = requests.get(url=request_url, params=params)
+    response_json = response.json()
+    return response_json.get("current")
+
+
+def create_icon_url(icon_id):
+    return f"https://openweathermap.org/img/wn/{icon_id}@2x.png"
+
+
+def compute_weather_timestamp_minus_days(minus_days):
     current_time = datetime.datetime.utcnow()
-    return current_time - datetime.timedelta(days=4, hours=23, minutes=59)
+    days_ago = current_time - datetime.timedelta(days=minus_days)
+    return int(days_ago.timestamp())
