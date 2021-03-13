@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 
 import requests
 
@@ -6,6 +6,12 @@ from .weather_env_config import OPEN_WEATHER_API_KEY
 
 OPEN_WEATHER_MAP_URL = "https://api.openweathermap.org/data/2.5"
 HISTORICAL_API_SPEC = "/onecall/timemachine"
+
+KEY_WEATHER = "weather"
+KEY_WEATHER_DATE = "dt"
+KEY_WEATHER_MAIN = "main"
+KEY_WEATHER_DESCRIPTION = "description"
+KEY_WEATHER_ICON = "icon"
 
 
 def request_weather_summary(latitude, longitude, timestamp=None):
@@ -32,6 +38,6 @@ def create_icon_url(icon_id):
 
 
 def compute_weather_timestamp_minus_days(minus_days):
-    current_time = datetime.datetime.utcnow()
-    days_ago = current_time - datetime.timedelta(days=minus_days)
+    current_time = datetime.utcnow()
+    days_ago = current_time - timedelta(days=minus_days)
     return int(days_ago.timestamp())
