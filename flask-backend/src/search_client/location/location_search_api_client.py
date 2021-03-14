@@ -7,14 +7,14 @@ KEY_LONGITUDE = "longitude"
 
 
 def find_first_lat_and_long(zip_code):
-    results = find_location(zip_code, 1)
-    locations = results.get("records")
+    locations = find_locations(zip_code, 1)
     if locations is not None and len(locations) > 0:
         return extract_lat_and_long(locations[0])
     return None
 
 
-def find_location(search_term, max_results=10):
+# returns a list
+def find_locations(search_term, max_results=10):
     params = {
         "q": search_term,
         "rows": max_results,
@@ -22,11 +22,13 @@ def find_location(search_term, max_results=10):
         "lang": "en"
     }
     response = requests.get(url=OPEN_DATA_SOFT_URL, params=params)
-    return response.json()
+    response_json = response.json()
+    return response_json.get("records")
 
 
 def extract_lat_and_long(location_entry):
+    location_fields = location_entry.get("fields")
     return {
-        KEY_LATITUDE: location_entry.get(KEY_LATITUDE),
-        KEY_LONGITUDE: location_entry.get(KEY_LONGITUDE)
+        KEY_LATITUDE: location_fields.get(KEY_LATITUDE),
+        KEY_LONGITUDE: location_fields.get(KEY_LONGITUDE)
     }
