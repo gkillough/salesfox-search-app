@@ -1,6 +1,10 @@
 import requests
 
+from .bing_env_config import BING_API_KEY
 from ..location import location_search_api_client
+
+BING_WEB_SEARCH_URL = "https://api.bing.microsoft.com/v7.0/search"
+BING_NEWS_SEARCH_URL = "https://api.bing.microsoft.com/v7.0/news/search"
 
 
 def create_bing_location_header_value(latitude, longitude, radius_meters=1000):
@@ -8,16 +12,15 @@ def create_bing_location_header_value(latitude, longitude, radius_meters=1000):
 
 
 class BingSearchClient:
-    def __init__(self, base_url, api_key):
+    def __init__(self, base_url):
         self.base_url = base_url
-        self.api_key = api_key
 
     def execute_search_request(self, search_term, zip_code=None, max_results=10, additional_params=None):
         if additional_params is None:
             additional_params = {}
 
         headers = {
-            "Ocp-Apim-Subscription-Key": self.api_key
+            "Ocp-Apim-Subscription-Key": BING_API_KEY
         }
 
         if zip_code is not None:
