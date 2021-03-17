@@ -1,11 +1,14 @@
-def create_salesfox_news_item(external_news_item):
-    news_item_providers = external_news_item.get("provider")
-    news_sources = ''.join(map(lambda item: item.get("name"), news_item_providers))
+def create_salesfox_result_item(bing_result_item, bing_schema):
+    # TODO add "sources" extraction to schema
+    bing_result_provider = bing_result_item.get("provider")
+    sources = ""
+    if bing_result_provider:
+        sources = "".join(map(lambda item: item.get("name", ""), bing_result_provider))
     return {
-        "title": external_news_item.get("name"),
-        "description": external_news_item.get("description"),
-        "link": external_news_item.get("url"),
-        "source": news_sources
+        "title": bing_result_item.get(bing_schema["title"], "Unknown Title"),
+        "description": bing_result_item.get(bing_schema["description"], "Unknown Description"),
+        "link": bing_result_item.get(bing_schema["link"], "#"),
+        "source": sources
     }
 
 
@@ -15,11 +18,15 @@ class SalesfoxSearchClient:
 
     def search(self, search_term, zip_code):
         print(f"A search for ['{search_term}'] was performed")
-        bing_news = self.bing_search_client.execute_search_request(search_term, zip_code, 5)
+        bing_response = self.bing_search_client.execute_search_request(search_term, zip_code, 5)
+        bing_results_list = self.bing_search_client.extract_results_list_from_response(bing_response)
+
+        if bing_results_list is None:
+            bing_results_list = []
 
         salesfox_news = []
-        for news_item in bing_news.get("value"):
-            salesfox_news_item = create_salesfox_news_item(news_item)
+        for bing_result in bing_results_list:
+            salesfox_news_item = create_salesfox_result_item(bing_result, self.bing_search_client.schema)
             salesfox_news.append(salesfox_news_item)
 
         return {

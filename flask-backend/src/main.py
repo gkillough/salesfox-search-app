@@ -1,17 +1,14 @@
 import flask
 
-from search_client.bing.bing_search_client_class import BingSearchClient, BING_NEWS_SEARCH_URL, BING_WEB_SEARCH_URL
+from search_client.bing.bing_search_client_class import BING_NEWS_SEARCH_CLIENT, BING_WEB_SEARCH_CLIENT
 from search_client.company import company_search_client
 from search_client.salesfox_search_client import SalesfoxSearchClient
 from search_client.weather import salesfox_weather_client
 
 app = flask.Flask("__main__")
 
-bing_news_search_client = BingSearchClient(BING_NEWS_SEARCH_URL)
-bing_web_search_client = BingSearchClient(BING_WEB_SEARCH_URL)
-
-salesfox_news_search_client = SalesfoxSearchClient(bing_news_search_client)
-salesfox_web_search_client = SalesfoxSearchClient(bing_news_search_client)
+salesfox_news_search_client = SalesfoxSearchClient(BING_NEWS_SEARCH_CLIENT)
+salesfox_web_search_client = SalesfoxSearchClient(BING_WEB_SEARCH_CLIENT)
 
 
 @app.route("/")
