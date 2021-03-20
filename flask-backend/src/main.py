@@ -1,10 +1,14 @@
 import flask
 
+from search_client.bing.bing_search_client_class import BING_NEWS_SEARCH_CLIENT, BING_WEB_SEARCH_CLIENT
 from search_client.company import company_search_client
-from search_client.news import salesfox_news_client
+from search_client.salesfox_search_client import SalesfoxSearchClient
 from search_client.weather import salesfox_weather_client
 
 app = flask.Flask("__main__")
+
+salesfox_news_search_client = SalesfoxSearchClient(BING_NEWS_SEARCH_CLIENT)
+salesfox_web_search_client = SalesfoxSearchClient(BING_WEB_SEARCH_CLIENT)
 
 
 @app.route("/")
@@ -25,7 +29,25 @@ def get_news():
     if query is None:
         flask.abort(400, "The 'q' query param is required")
 
-    return salesfox_news_client.retrieve_news(query, zip_code)
+    return salesfox_news_search_client.search(query, zip_code)
+
+
+# To use this API:
+# Endpoint: http://localhost:5000/api/persona
+# Params:
+# - q: query/search term
+# - zip_code: zip code used for location-based results
+@app.route("/api/persona")
+def find_persona_news():
+    query = flask.request.args.get('q')
+    zip_code = flask.request.args.get('zip_code')
+
+    if query is None:
+        flask.abort(400, "The 'q' query param is required")
+
+    modified_query = f"how to succeed as a \"{query}\""
+
+    return salesfox_web_search_client.search(modified_query, zip_code)
 
 
 # To use this API:
@@ -40,6 +62,10 @@ def find_company():
     return company_search_client.find_by_name(company_name)
 
 
+# To use this API:
+# Endpoint: http://localhost:5000/api/weather
+# Params:
+# - zip_code: zip code used for location-based results
 @app.route("/api/weather")
 def find_historical_weather():
     zip_code = flask.request.args.get('zip_code')
