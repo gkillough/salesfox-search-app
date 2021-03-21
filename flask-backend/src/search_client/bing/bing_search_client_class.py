@@ -52,6 +52,7 @@ class BingSearchClient:
             "cc": "US"
         }
 
+        print(additional_params)
         if additional_params:
             params = params | additional_params
 
