@@ -19,10 +19,6 @@ class SalesfoxSearchClient:
 
     def search(self, search_term, zip_code):
         print(f"A search for ['{search_term}'] was performed")
-
-        if self.additional_bing_params is None:
-            self.additional_bing_params = None
-
         bing_response = self.bing_search_client.execute_search_request(
             search_term,
             zip_code,
