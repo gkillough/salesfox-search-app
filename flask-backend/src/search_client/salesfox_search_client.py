@@ -13,12 +13,18 @@ def create_salesfox_result_item(bing_result_item, bing_schema):
 
 
 class SalesfoxSearchClient:
-    def __init__(self, bing_search_client):
+    def __init__(self, bing_search_client, additional_bing_params=None):
         self.bing_search_client = bing_search_client
+        self.additional_bing_params = additional_bing_params
 
     def search(self, search_term, zip_code):
         print(f"A search for ['{search_term}'] was performed")
-        bing_response = self.bing_search_client.execute_search_request(search_term, zip_code, 5)
+        bing_response = self.bing_search_client.execute_search_request(
+            search_term,
+            zip_code,
+            5,
+            additional_params=self.additional_bing_params
+        )
         bing_results_list = self.bing_search_client.extract_results_list_from_response(bing_response)
 
         if bing_results_list is None:
