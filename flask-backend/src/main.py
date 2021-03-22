@@ -107,4 +107,6 @@ def find_historical_weather():
     return salesfox_weather_client.five_day(zip_code)
 
 
-app.run(debug=True)
+# For running flask locally with python
+if __name__ == '__main__':
+    app.run()
