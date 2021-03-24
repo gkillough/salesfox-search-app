@@ -7,7 +7,7 @@ from search_client.company import company_search_client
 from search_client.salesfox_search_client import SalesfoxSearchClient
 from search_client.weather import salesfox_weather_client
 
-app = flask.Flask(import_name="__main__", template_folder="../templates")
+app = flask.Flask(import_name="__main__", static_folder="../static", template_folder="../templates")
 
 salesfox_news_search_client = SalesfoxSearchClient(BING_NEWS_SEARCH_CLIENT)
 salesfox_industry_news_search_client = SalesfoxSearchClient(BING_NEWS_SEARCH_CLIENT, {"category": "Business"})
