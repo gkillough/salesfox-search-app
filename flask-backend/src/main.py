@@ -19,6 +19,16 @@ def react_entrypoint():
     return flask.render_template("index.html")
 
 
+# FIXME remove
+@app.route("/api/flask-info")
+def get_flask_info():
+    return {
+        "root-path": app.root_path,
+        "templates-dir": app.template_folder,
+        "static-dir": app.static_folder
+    }
+
+
 @app.errorhandler(HTTPException)
 def handle_exception(e):
     response = e.get_response()
