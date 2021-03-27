@@ -1,3 +1,6 @@
+import os
+import pathlib
+
 import flask
 from flask import json
 from werkzeug.exceptions import HTTPException
@@ -7,7 +10,12 @@ from search_client.company import company_search_client
 from search_client.salesfox_search_client import SalesfoxSearchClient
 from search_client.weather import salesfox_weather_client
 
-app = flask.Flask(import_name="__main__", static_folder="../static", template_folder="../templates")
+APP_FILE_DIR = os.path.dirname(os.path.abspath(__file__))
+BACK_END_DIR = str(pathlib.Path(os.path.join(APP_FILE_DIR, os.pardir)).resolve())
+STATIC_DIR = os.path.join(BACK_END_DIR, "static")
+TEMPLATES_DIR = os.path.join(BACK_END_DIR, "templates")
+
+app = flask.Flask(import_name="__main__", static_folder=STATIC_DIR, template_folder=TEMPLATES_DIR)
 
 salesfox_news_search_client = SalesfoxSearchClient(BING_NEWS_SEARCH_CLIENT)
 salesfox_industry_news_search_client = SalesfoxSearchClient(BING_NEWS_SEARCH_CLIENT, {"category": "Business"})
@@ -25,7 +33,11 @@ def get_flask_info():
     return {
         "root-path": app.root_path,
         "templates-dir": app.template_folder,
-        "static-dir": app.static_folder
+        "static-dir": app.static_folder,
+        "APP_FILE_DIR": APP_FILE_DIR,
+        "BACK_END_DIR": BACK_END_DIR,
+        "STATIC_DIR": STATIC_DIR,
+        "TEMPLATES_DIR": TEMPLATES_DIR
     }
 
 
