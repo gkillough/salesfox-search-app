@@ -1,11 +1,11 @@
 import './App.css';
 import Header from 'modules/components/Header/header'
-import SearchForm from 'modules/pages/SearchForm/searchForm'
+import Home from 'modules/pages/Home/home'
 function App() {
   return (
     <div className="App">
     <Header />
-    <SearchForm />
+    <Home />
     </div>
   );
 }

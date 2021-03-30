@@ -49,14 +49,11 @@ const Header: React.FC = () => {
       className={classes.appbar}
     >
       <Toolbar disableGutters>
-        <Button
-          disableRipple
-          className={classes.logoContainer}
-        >
+        <Button disableRipple className={classes.logoContainer}>
           <img
             alt="salesfox logo"
             className={classes.logo}
-            src={'modules/assets/salesfox-logo-final.png'}
+            src={"modules/assets/salesfox-logo-final.png"}
           />
         </Button>
         <Button
@@ -67,11 +64,7 @@ const Header: React.FC = () => {
         >
           Sign Up!
         </Button>
-        <Button
-          className={classes.loginButton}
-        >
-          Log In
-        </Button>
+        <Button className={classes.loginButton}>Log In</Button>
       </Toolbar>
     </AppBar>
   );

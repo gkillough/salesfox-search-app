@@ -193,7 +193,7 @@ export default function SignUp() {
           </div>
         </Grid>
         <Grid item xs={12}>
-          <Button
+          {/* <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -202,7 +202,7 @@ export default function SignUp() {
             disableElevation
           >
             Find Triggers
-          </Button>
+          </Button> */}
         </Grid>
       </Grid>
     </Container>
