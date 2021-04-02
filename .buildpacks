@@ -1,2 +1,2 @@
-react-frontend=https://github.com/heroku/heroku-buildpack-nodejs
+react-frontend=https://github.com/heroku/nodejs-yarn-buildpack
 https://github.com/heroku/heroku-buildpack-python
