@@ -74,7 +74,7 @@ export default function Home() {
 
       async function getCompany(keyword) {
         await fetch(
-          `http://localhost:5000/api/company?q=${keyword}`
+          `http://localhost:5000/api/companies?name=${keyword}`
         )
           .then((res) => res.json())
           .then(
