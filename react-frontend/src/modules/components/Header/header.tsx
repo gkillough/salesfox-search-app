@@ -53,7 +53,7 @@ const Header: React.FC = () => {
           <img
             alt="salesfox logo"
             className={classes.logo}
-            src={"modules/assets/salesfox-logo-final.png"}
+            src="https://assets.salesfox.ai/salesfox%20logo%20final.png"
           />
         </Button>
         <Button

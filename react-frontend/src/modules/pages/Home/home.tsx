@@ -42,7 +42,7 @@ export default function Home() {
 
       async function getNews(keyword, location) {
         await fetch(
-          `http://localhost:5000/api/news?q=${keyword}&zip_code=${location}`
+          `https://search-beta.salesfox.ai/api/news?q=${keyword}&zip_code=${location}`
         )
           .then((res) => res.json())
           .then(
@@ -58,7 +58,7 @@ export default function Home() {
 
       async function getIndustry(keyword, location) {
         await fetch(
-          `http://localhost:5000/api/industry?q=${keyword}&zip_code=${location}`
+          `https://search-beta.salesfox.ai/api/industry?q=${keyword}&zip_code=${location}`
         )
           .then((res) => res.json())
           .then(
@@ -74,7 +74,7 @@ export default function Home() {
 
       async function getCompany(keyword) {
         await fetch(
-          `http://localhost:5000/api/company?q=${keyword}`
+          `https://search-beta.salesfox.ai/api/companies?name=${keyword}`
         )
           .then((res) => res.json())
           .then(
@@ -90,7 +90,7 @@ export default function Home() {
 
       async function getPersona(keyword, location) {
         await fetch(
-          `http://localhost:5000/api/persona?q=${keyword}&zip_code=${location}`
+          `https://search-beta.salesfox.ai/api/persona?q=${keyword}&zip_code=${location}`
         )
           .then((res) => res.json())
           .then(
@@ -106,7 +106,7 @@ export default function Home() {
 
       async function getWeather(location) {
         await fetch(
-          `http://localhost:5000/api/weather?zip_code=${location}`
+          `https://search-beta.salesfox.ai/api/weather?zip_code=${location}`
         )
           .then((res) => res.json())
           .then(
