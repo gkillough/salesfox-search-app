@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import {
   Button,
   TextField,
@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { useForm } from "react-hook-form";
 
 const uglyOrange = '#e14536'
 const creamSnow = '#FAF8F8'
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme: any) => ({
     display: "flex",
     flexDirection: "column",
     width: '90%',
-    justifyContent: 'space-between'
+    justifyContent: 'space-around'
   },
   submit: {
     background: uglyOrange,
@@ -36,18 +37,34 @@ const useStyles = makeStyles((theme: any) => ({
   }
 }));
 
-export default function SignUp() {
+export default function SearchForm({getNews, getIndustry, getCompany, getPersona, getWeather, setIsResultView}) {
 
   // TODO: add validation and ensure secure login
   const classes = useStyles();
-  // const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const [errorMessage, setErrorMessage] = useState(false);
 
+  const onSubmit = async (data) => {
+    await getNews(data.interest || data.industry || "news", data.locationB || "75024");
+    await getIndustry(data.industry || "sales", data.locationB || "75024");
+    await getCompany(data.company || "google");
+    await getPersona(data.persona || "microsoft", data.locationB || "75024");
+    await getWeather(data.locationB || "75024");
+    setIsResultView(true);
+  }
+
   return (
     <Container maxWidth="lg">
-      <Grid component="form" spacing={1} container>
-        <Typography variant="h1" align='center' className={classes.title}>Salesfox Search</Typography>
+      <Grid
+        component="form"
+        spacing={1}
+        container
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Typography variant="h1" align="center" className={classes.title}>
+          Salesfox Search
+        </Typography>
         <Grid container xs={6}>
           <div className={classes.paper}>
             <Typography variant="subtitle1">Account Based</Typography>
@@ -61,6 +78,8 @@ export default function SignUp() {
                 placeholder="John doe"
                 autoFocus
                 size="small"
+                disabled
+                inputRef={register}
               />
               {/* {errors.firstName && (
               <Typography color="error" variant="body2">
@@ -77,6 +96,8 @@ export default function SignUp() {
                 placeholder="CEO"
                 name="title"
                 size="small"
+                disabled
+                inputRef={register}
               />
             </Grid>
             <Grid item xs={12}>
@@ -88,6 +109,8 @@ export default function SignUp() {
                 placeholder="www.linkedin.com/in"
                 name="url"
                 size="small"
+                disabled
+                inputRef={register}
               />
             </Grid>
             <Grid item xs={12}>
@@ -99,6 +122,7 @@ export default function SignUp() {
                 placeholder="Google"
                 name="company"
                 size="small"
+                inputRef={register}
               />
             </Grid>
             <Grid item xs={12}>
@@ -110,18 +134,8 @@ export default function SignUp() {
                 placeholder="www.google.com"
                 name="website"
                 size="small"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                id="location"
-                label="Location"
-                placeholder="Dallas"
-                name="location"
-                autoComplete="lname"
-                size="small"
+                disabled
+                inputRef={register}
               />
             </Grid>
           </div>
@@ -139,6 +153,7 @@ export default function SignUp() {
                 placeholder="Software Developer"
                 autoFocus
                 size="small"
+                inputRef={register}
               />
               {/* {errors.firstName && (
               <Typography color="error" variant="body2">
@@ -155,6 +170,7 @@ export default function SignUp() {
                 placeholder="Computer Software"
                 name="industry"
                 size="small"
+                inputRef={register}
               />
             </Grid>
             <Grid item xs={12}>
@@ -166,6 +182,7 @@ export default function SignUp() {
                 placeholder="corporate gifting tool"
                 name="market"
                 size="small"
+                inputRef={register}
               />
             </Grid>
             <Grid item xs={12}>
@@ -173,10 +190,11 @@ export default function SignUp() {
                 variant="outlined"
                 fullWidth
                 id="locationB"
-                label="Location"
-                placeholder="Dallas"
+                label="Zip Code"
+                placeholder="75244"
                 name="locationB"
                 size="small"
+                inputRef={register({ required: true })}
               />
             </Grid>
             <Grid item xs={12}>
@@ -188,12 +206,13 @@ export default function SignUp() {
                 placeholder="Hockey"
                 name="interest"
                 size="small"
+                inputRef={register({ required: true })}
               />
             </Grid>
           </div>
         </Grid>
         <Grid item xs={12}>
-          {/* <Button
+          <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -202,7 +221,7 @@ export default function SignUp() {
             disableElevation
           >
             Find Triggers
-          </Button> */}
+          </Button>
         </Grid>
       </Grid>
     </Container>
