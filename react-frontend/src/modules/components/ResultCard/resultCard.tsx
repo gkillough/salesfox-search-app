@@ -5,7 +5,6 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import CardMedia from "@material-ui/core/CardMedia";
 
 const useStyles = makeStyles({
   root: {
@@ -16,18 +15,15 @@ const useStyles = makeStyles({
     overflow: "auto",
     borderRadius: 25,
   },
-  title: {
-    color: "#3f51b5",
-  },
   pos: {
     marginBottom: 12,
   },
-  media: {
-    height: 150,
+  title: {
+    color: "#3f51b5",
   },
 });
 
-export default function NewResults({ title, text, weather, weatherIcon }) {
+export default function ResultCard({title, text}) {
   const classes = useStyles();
 
   return (
@@ -36,11 +32,6 @@ export default function NewResults({ title, text, weather, weatherIcon }) {
         <Typography variant="h5" component="h2" className={classes.title}>
           {title}
         </Typography>
-        <CardMedia
-          className={classes.media}
-          image={weather[4].conditions[0].iconUrl}
-          title={weather[4].conditions[0].summary}
-        />
         <Typography className={classes.pos} color="textSecondary">
           Top Results:
         </Typography>
