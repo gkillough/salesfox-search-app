@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme: any) => ({
   },
   title: {
     color : uglyOrange,
-    marginLeft: 200
   }
 }));
 
@@ -55,16 +54,19 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
   }
 
   return (
-    <Container maxWidth="lg">
+    <>
+      <Typography variant="h1" align="center" className={classes.title}>
+        Salesfox Search
+      </Typography>
+      <Typography variant="h5" align="center" className={classes.title}>
+        Must Enter Market and Zip Code
+      </Typography>
       <Grid
         component="form"
         spacing={1}
         container
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Typography variant="h1" align="center" className={classes.title}>
-          Salesfox Search
-        </Typography>
         <Grid container xs={6}>
           <div className={classes.paper}>
             <Typography variant="subtitle1">Account Based</Typography>
@@ -182,7 +184,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 placeholder="corporate gifting tool"
                 name="market"
                 size="small"
-                inputRef={register}
+                inputRef={register({ required: true })}
               />
             </Grid>
             <Grid item xs={12}>
@@ -206,7 +208,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 placeholder="Hockey"
                 name="interest"
                 size="small"
-                inputRef={register({ required: true })}
+                inputRef={register}
               />
             </Grid>
           </div>
@@ -224,6 +226,6 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
           </Button>
         </Grid>
       </Grid>
-    </Container>
+      </>
   );
 }
