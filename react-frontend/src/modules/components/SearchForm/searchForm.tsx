@@ -5,6 +5,7 @@ import {
   Grid,
   Container,
   Typography,
+  Link,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
@@ -46,9 +47,9 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
 
   const onSubmit = async (data) => {
     await getNews(data.interest || data.industry || "news", data.locationB || "75024");
-    await getIndustry(data.industry || "sales", data.locationB || "75024");
-    await getCompany(data.company || "google");
-    await getPersona(data.persona || "microsoft", data.locationB || "75024");
+    await getIndustry(data.industry || "Computer Software", data.locationB || "75024");
+    await getCompany(data.company || "Google");
+    await getPersona(data.persona || "Software Developer", data.locationB || "75024");
     await getWeather(data.locationB || "75024");
     setIsResultView(true);
   }
@@ -57,9 +58,6 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
     <>
       <Typography variant="h1" align="center" className={classes.title}>
         Salesfox Search
-      </Typography>
-      <Typography variant="h5" align="center" className={classes.title}>
-        Must Enter Market and Zip Code
       </Typography>
       <Grid
         component="form"
@@ -181,10 +179,11 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 fullWidth
                 id="market"
                 label="Market"
-                placeholder="corporate gifting tool"
+                placeholder="Corporate gifting tool"
                 name="market"
                 size="small"
-                inputRef={register({ required: true })}
+                disabled
+                inputRef={register}
               />
             </Grid>
             <Grid item xs={12}>
@@ -192,7 +191,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 variant="outlined"
                 fullWidth
                 id="locationB"
-                label="Zip Code"
+                label="Zip Code*"
                 placeholder="75244"
                 name="locationB"
                 size="small"
@@ -216,14 +215,24 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
         <Grid item xs={12}>
           <Button
             type="submit"
-            fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            fullWidth
             disableElevation
           >
-            Find Triggers
+            Search
           </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h6" align="center" className={classes.title}>
+            <Link
+              color="inherit"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSf-0rkzp6h2vFz0hTKMT9jVnWNjZmoBGpPSsq-uauxb8SJI8A/viewform"
+            >
+            Click Here To Provide Feedback
+            </Link>
+          </Typography>
         </Grid>
       </Grid>
       </>
