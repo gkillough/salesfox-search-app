@@ -64,11 +64,11 @@ export default function CompanyResultCard({title, data}) {
     });
   }
 
-  const cardContent = rows ? ({rows}) : (
-      <Typography variant="body2" component="p">
-        "Unable to Retrieve Data"
-      </Typography>
-    );
+//   const cardContent = rows ? ({rows}) : (
+//       <Typography variant="body2" component="p">
+//         "Unable to Retrieve Data"
+//       </Typography>
+//     );
 
   return (
     <Card className={classes.root}>
@@ -80,7 +80,7 @@ export default function CompanyResultCard({title, data}) {
           Top Results:
         </Typography>
 
-        {cardContent}
+        {rows}
 
       </CardContent>
     </Card>
