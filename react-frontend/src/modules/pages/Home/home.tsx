@@ -4,6 +4,7 @@ import { Grid, Container, Button } from "@material-ui/core";
 import NewsResults from 'modules/components/NewsResults/newsResults'
 import SearchForm from 'modules/components/SearchForm/searchForm'
 import ResultCard from "modules/components/ResultCard/resultCard"
+import CompanyResultCard from 'modules/components/CompanyResultCard/companyResultCard'
 // import {getNews} from 'modules/api/api'
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -79,7 +80,7 @@ export default function Home() {
           .then((res) => res.json())
           .then(
             (result) => {
-              setCompanyResults(result.items);
+              setCompanyResults(result);
             },
             (error) => {
               console.log(error);
@@ -138,7 +139,7 @@ export default function Home() {
               <ResultCard title="Prospect Results" text="COMING SOON" />
             </Grid>
             <Grid xs={3}>
-                <ResultCard title="Company Results" text={companyResults} />
+                <CompanyResultCard title="Company Results" data={companyResults} />
             </Grid>
             <Grid xs={3}>
                 <NewsResults
