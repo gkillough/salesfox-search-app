@@ -138,7 +138,7 @@ export default function Home() {
               <ResultCard title="Prospect Results" text="COMING SOON" />
             </Grid>
             <Grid xs={3}>
-                <ResultCard title="company Results" text={companyResults} />
+                <ResultCard title="Company Results" text={companyResults} />
             </Grid>
             <Grid xs={3}>
                 <NewsResults
