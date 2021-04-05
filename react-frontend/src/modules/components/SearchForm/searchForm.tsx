@@ -59,6 +59,9 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
       <Typography variant="h1" align="center" className={classes.title}>
         Salesfox Search
       </Typography>
+      <Typography variant="body2" component="p" align="center">
+        Note: Results can take up to 15 seconds to retrieve.
+      </Typography>
       <Grid
         component="form"
         spacing={1}
@@ -224,16 +227,16 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
             Search
           </Button>
         </Grid>
-        <Grid item xs={12}>
-          <Typography variant="h6" align="center" className={classes.title}>
-            <Link
-              color="inherit"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSf-0rkzp6h2vFz0hTKMT9jVnWNjZmoBGpPSsq-uauxb8SJI8A/viewform"
-            >
-            Click Here To Provide Feedback
-            </Link>
-          </Typography>
-        </Grid>
+{/*         <Grid item xs={12}> */}
+{/*           <Typography variant="h6" align="center" className={classes.title}> */}
+{/*             <Link */}
+{/*               color="inherit" */}
+{/*               href="https://docs.google.com/forms/d/e/1FAIpQLSf-0rkzp6h2vFz0hTKMT9jVnWNjZmoBGpPSsq-uauxb8SJI8A/viewform" */}
+{/*             > */}
+{/*             Click Here To Provide Feedback */}
+{/*             </Link> */}
+{/*           </Typography> */}
+{/*         </Grid> */}
       </Grid>
       </>
   );

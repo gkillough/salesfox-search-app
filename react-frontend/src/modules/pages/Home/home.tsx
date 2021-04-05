@@ -1,5 +1,11 @@
 import React, {useState} from "react";
-import { Grid, Container, Button } from "@material-ui/core";
+import {
+  Grid,
+  Container,
+  Button,
+  Typography,
+  Link
+} from "@material-ui/core";
 
 import NewsResults from 'modules/components/NewsResults/newsResults'
 import SearchForm from 'modules/components/SearchForm/searchForm'
@@ -196,6 +202,18 @@ export default function Home() {
           </Button> */}
         </>
       )}
+      <br/>
+      <Typography variant="body2" component="p" align="center">
+        <Link
+          color="inherit"
+          target="_blank"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSf-0rkzp6h2vFz0hTKMT9jVnWNjZmoBGpPSsq-uauxb8SJI8A/viewform"
+        >
+        Click Here To Provide Feedback
+        </Link>
+      </Typography>
+      <br/>
+      <br/>
     </Container>
   );
 }
