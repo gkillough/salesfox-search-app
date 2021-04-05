@@ -30,36 +30,36 @@ export default function CompanyResultCard({title, data}) {
   if (data && data.companies) {
     data.companies.forEach(function (company) {
       rows.push(
-        <>
-        <hr/>
-        <Typography variant="body2" component="p">
-          Name: {company.name ? company.name : "Unknown"}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Industry: {company.industry ? company.industry : "Unknown"}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Size: {company.size ? company.size : "Unknown"}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Website: {company.website ? company.website : "Unknown"}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Year Founded: {company.year_founded ? company.year_founded : "Unknown"}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Country: {company.country ? company.country : "Unknown"}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Region: {company.region ? company.region : "Unknown"}
-        </Typography>
-        <Typography variant="body2" component="p">
-          Locality: {company.locality ? company.locality : "Unknown"}
-        </Typography>
-        <Typography variant="body2" component="p">
-          LinkedIn: {company.linkedin_url ? company.linkedin_url : "Unknown"}
-        </Typography>
-        </>
+        <div>
+          <hr/>
+          <Typography variant="body2" component="p">
+            Name: {company.name ? company.name : "Unknown"}
+          </Typography>
+          <Typography variant="body2" component="p">
+            Industry: {company.industry ? company.industry : "Unknown"}
+          </Typography>
+          <Typography variant="body2" component="p">
+            Size: {company.size ? company.size : "Unknown"}
+          </Typography>
+          <Typography variant="body2" component="p">
+            Website: {company.website ? company.website : "Unknown"}
+          </Typography>
+          <Typography variant="body2" component="p">
+            Year Founded: {company.year_founded ? company.year_founded : "Unknown"}
+          </Typography>
+          <Typography variant="body2" component="p">
+            Country: {company.country ? company.country : "Unknown"}
+          </Typography>
+          <Typography variant="body2" component="p">
+            Region: {company.region ? company.region : "Unknown"}
+          </Typography>
+          <Typography variant="body2" component="p">
+            Locality: {company.locality ? company.locality : "Unknown"}
+          </Typography>
+          <Typography variant="body2" component="p">
+            LinkedIn: {company.linkedin_url ? company.linkedin_url : "Unknown"}
+          </Typography>
+        </div>
       );
     });
   }
