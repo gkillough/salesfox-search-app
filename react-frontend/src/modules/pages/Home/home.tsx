@@ -138,34 +138,26 @@ export default function Home() {
               <ResultCard title="Prospect Results" text="COMING SOON" />
             </Grid>
             <Grid xs={3}>
-              {companyResults && (
                 <ResultCard title="company Results" text={companyResults} />
-              )}
             </Grid>
             <Grid xs={3}>
-              {(newsResults || weatherResults) && (
                 <NewsResults
                   title="Location Results"
                   text={newsResults}
                   weather={weatherResults}
                   weatherIcon={weatherResults}
                 />
-              )}
             </Grid>
           </div>
           <div className={classes.topRow}>
             <Grid xs={3}>
-              {PersonaResults && (
                 <ResultCard title="Persona Results" text={PersonaResults} />
-              )}
             </Grid>
             <Grid xs={3}>
               <ResultCard title="Interest Results" text="COMING SOON" />
             </Grid>
             <Grid xs={3}>
-              {industryResults && (
                 <ResultCard title="Market Results" text={industryResults} />
-              )}
             </Grid>
           </div>
           <Button

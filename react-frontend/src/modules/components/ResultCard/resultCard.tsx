@@ -36,28 +36,28 @@ export default function ResultCard({title, text}) {
           Top Results:
         </Typography>
         <Typography variant="body2" component="p">
-          {text[0].title || text}
+          {text[0] ? text[0].title : "Unable to Retrieve Data"}
         </Typography>
         <CardActions>
-          <a href={text[0].link} style={{ textDecoration: "none" }}>
+          <a href={text[0] && text[0].link} style={{ textDecoration: "none" }}>
             <Button size="small">Learn More</Button>
           </a>
         </CardActions>
         <br></br>
         <Typography variant="body2" component="p">
-          {text[1].title || text}
+          {text[1] ? text[1].title : "Unable to Retrieve Data"}
         </Typography>
         <CardActions>
-          <a href={text[1].link} style={{ textDecoration: "none" }}>
+          <a href={text[1] && text[1].link} style={{ textDecoration: "none" }}>
             <Button size="small">Learn More</Button>
           </a>
         </CardActions>
         <br></br>
         <Typography variant="body2" component="p">
-          {text[2].title || text}
+          {text[2] ? text[2].title : "Unable to Retrieve Data"}
         </Typography>
         <CardActions>
-          <a href={text[2].link} style={{ textDecoration: "none" }}>
+          <a href={text[2] && text[2].link} style={{ textDecoration: "none" }}>
             <Button size="small">Learn More</Button>
           </a>
         </CardActions>
