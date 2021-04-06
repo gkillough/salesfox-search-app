@@ -77,7 +77,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 variant="outlined"
                 fullWidth
                 id="name"
-                label="Name"
+                label="Name (Coming Soon)"
                 placeholder="John doe"
                 autoFocus
                 size="small"
@@ -95,7 +95,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 variant="outlined"
                 fullWidth
                 id="title"
-                label="Title"
+                label="Title (Coming Soon)"
                 placeholder="CEO"
                 name="title"
                 size="small"
@@ -108,7 +108,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 variant="outlined"
                 fullWidth
                 id="url"
-                label="Linkedln"
+                label="LinkedIn (Coming Soon)"
                 placeholder="www.linkedin.com/in"
                 name="url"
                 size="small"
@@ -133,7 +133,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 variant="outlined"
                 fullWidth
                 id="website"
-                label="Website"
+                label="Website (Coming Soon)"
                 placeholder="www.google.com"
                 name="website"
                 size="small"
@@ -181,7 +181,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 variant="outlined"
                 fullWidth
                 id="market"
-                label="Market"
+                label="Market (Coming Soon)"
                 placeholder="Corporate gifting tool"
                 name="market"
                 size="small"
@@ -227,16 +227,6 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
             Search
           </Button>
         </Grid>
-{/*         <Grid item xs={12}> */}
-{/*           <Typography variant="h6" align="center" className={classes.title}> */}
-{/*             <Link */}
-{/*               color="inherit" */}
-{/*               href="https://docs.google.com/forms/d/e/1FAIpQLSf-0rkzp6h2vFz0hTKMT9jVnWNjZmoBGpPSsq-uauxb8SJI8A/viewform" */}
-{/*             > */}
-{/*             Click Here To Provide Feedback */}
-{/*             </Link> */}
-{/*           </Typography> */}
-{/*         </Grid> */}
       </Grid>
       </>
   );

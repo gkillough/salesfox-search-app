@@ -80,7 +80,11 @@ export default function CompanyResultCard({title, data}) {
           Top Results:
         </Typography>
 
-        {rows}
+        {rows ? rows :
+          <Typography variant="body2" component="p">
+            Unable to Retrieve Data 
+          </Typography>
+        }
 
       </CardContent>
     </Card>
