@@ -56,6 +56,7 @@ const Header: React.FC = () => {
             src="https://assets.salesfox.ai/salesfox%20logo%20final.png"
           />
         </Button>
+        { /*
         <Button
           variant="contained"
           color="primary"
@@ -65,6 +66,7 @@ const Header: React.FC = () => {
           Sign Up!
         </Button>
         <Button className={classes.loginButton}>Log In</Button>
+        */}
       </Toolbar>
     </AppBar>
   );
