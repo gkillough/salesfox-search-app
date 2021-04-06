@@ -18,10 +18,11 @@ const useStyles = makeStyles((theme: any) => ({
   paper: {
     display: "flex",
     flexDirection: "column",
-    width: '90%',
-    justifyContent: 'space-around'
+    width: '100%',
+    justifyContent: 'space-between'
   },
   submit: {
+    width: '100%',
     background: uglyOrange,
     border: `1px solid ${darkSlateGray}`,
     color: creamSnow,
@@ -34,6 +35,9 @@ const useStyles = makeStyles((theme: any) => ({
   },
   title: {
     color : uglyOrange,
+  },
+  textInput: {
+    marginBottom : 10
   }
 }));
 
@@ -83,6 +87,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 size="small"
                 disabled
                 inputRef={register}
+                className={classes.textInput}
               />
               {/* {errors.firstName && (
               <Typography color="error" variant="body2">
@@ -101,6 +106,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 size="small"
                 disabled
                 inputRef={register}
+                className={classes.textInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -114,6 +120,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 size="small"
                 disabled
                 inputRef={register}
+                className={classes.textInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -126,6 +133,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 name="company"
                 size="small"
                 inputRef={register}
+                className={classes.textInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -139,6 +147,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 size="small"
                 disabled
                 inputRef={register}
+                className={classes.textInput}
               />
             </Grid>
           </div>
@@ -157,6 +166,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 autoFocus
                 size="small"
                 inputRef={register}
+                className={classes.textInput}
               />
               {/* {errors.firstName && (
               <Typography color="error" variant="body2">
@@ -174,6 +184,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 name="industry"
                 size="small"
                 inputRef={register}
+                className={classes.textInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -187,6 +198,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 size="small"
                 disabled
                 inputRef={register}
+                className={classes.textInput}
               />
             </Grid>
             <Grid item xs={12}>
@@ -211,6 +223,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 name="interest"
                 size="small"
                 inputRef={register}
+                className={classes.textInput}
               />
             </Grid>
           </div>
@@ -228,6 +241,6 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
           </Button>
         </Grid>
       </Grid>
-      </>
+    </>
   );
 }

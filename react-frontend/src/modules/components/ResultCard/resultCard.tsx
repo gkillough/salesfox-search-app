@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   root: {
     minWidth: 325,
     width: "100%",
-    margin: 30,
+    margin: 20,
     height: 350,
     overflow: "auto",
     borderRadius: 25,
