@@ -64,11 +64,15 @@ export default function CompanyResultCard({title, data}) {
     });
   }
 
-//   const cardContent = rows ? ({rows}) : (
-//       <Typography variant="body2" component="p">
-//         "Unable to Retrieve Data"
-//       </Typography>
-//     );
+  if (rows === undefined || rows.length == 0) {
+    rows.push(
+      <div>
+        <Typography variant="body2" component="p">
+          No results found.
+        </Typography>
+      </div>
+    );
+  }
 
   return (
     <Card className={classes.root}>
@@ -80,11 +84,7 @@ export default function CompanyResultCard({title, data}) {
           Top Results:
         </Typography>
 
-        {rows ? rows :
-          <Typography variant="body2" component="p">
-            Unable to Retrieve Data 
-          </Typography>
-        }
+        {rows}
 
       </CardContent>
     </Card>
