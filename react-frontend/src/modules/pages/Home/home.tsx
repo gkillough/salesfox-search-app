@@ -20,6 +20,7 @@ const darkSlateGray = "#3f3d56";
 
 const useStyles = makeStyles((theme: any) => ({
   submit: {
+    width: '100%',
     background: uglyOrange,
     border: `1px solid ${darkSlateGray}`,
     color: creamSnow,
