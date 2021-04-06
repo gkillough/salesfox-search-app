@@ -13,6 +13,10 @@ companies_collection = pdl_datasets.get_collection("companies")
 
 
 def find_by_name(company_name, max_results=10):
+    if company_name:
+        company_name = company_name.lower()
+    else:
+        company_name = "google"
     found_companies_cursor = companies_collection.find({
         "$and": [
             {
