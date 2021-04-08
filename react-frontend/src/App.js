@@ -4,7 +4,7 @@ import Home from 'modules/pages/Home/home';
 import ReactGA from 'react-ga';
 
 function App() {
-  ReactGA.initialize('G-1DH4G83WZL');
+  ReactGA.initialize('UA-194080179-1');
   return (
     <div className="App">
     <Header />
