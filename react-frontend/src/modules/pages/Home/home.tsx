@@ -13,6 +13,7 @@ import ResultCard from "modules/components/ResultCard/resultCard"
 import CompanyResultCard from 'modules/components/CompanyResultCard/companyResultCard'
 // import {getNews} from 'modules/api/api'
 import { makeStyles } from "@material-ui/core/styles";
+import ReactGA from 'react-ga';
 
 const uglyOrange = "#e14536";
 const creamSnow = "#FAF8F8";
@@ -40,12 +41,14 @@ const useStyles = makeStyles((theme: any) => ({
 
 export default function Home() {
   const classes = useStyles();
-  const [newsResults, setNewsResults] = useState([])
-  const [industryResults, setIndustryResults] = useState([])
+  const [newsResults, setNewsResults] = useState([]);
+  const [industryResults, setIndustryResults] = useState([]);
   const [companyResults, setCompanyResults] = useState([]);
   const [PersonaResults, setPersonaResults] = useState([]);
   const [weatherResults, setWeatherResults] = useState([]);
-  const [isResultView, setIsResultView] = useState(false)
+  const [isResultView, setIsResultView] = useState(false);
+
+  ReactGA.pageview('/');
 
 
       async function getNews(keyword, location) {

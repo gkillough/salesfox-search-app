@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
+import ReactGA from 'react-ga';
 
 const uglyOrange = '#e14536'
 const creamSnow = '#FAF8F8'
@@ -42,7 +43,6 @@ const useStyles = makeStyles((theme: any) => ({
 }));
 
 export default function SearchForm({getNews, getIndustry, getCompany, getPersona, getWeather, setIsResultView}) {
-
   // TODO: add validation and ensure secure login
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm();
@@ -56,6 +56,11 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
     await getPersona(data.persona || "Software Developer", data.locationB || "75024");
     await getWeather(data.locationB || "75024");
     setIsResultView(true);
+
+    ReactGA.event({
+      category: 'Search',
+      action: 'A search was performed'
+    });
   }
 
   return (
