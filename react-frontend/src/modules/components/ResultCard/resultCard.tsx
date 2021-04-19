@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
   title: {
     color: "#3f51b5",
-  },
+  }
 });
 
 export default function ResultCard({title, text}) {
@@ -38,29 +38,44 @@ export default function ResultCard({title, text}) {
           Top Results:
         </Typography>
         <Typography variant="body2" component="p">
-          {textToUse[0] ? textToUse[0].title : "Unable to Retrieve Data"}
+          {textToUse[0] ? textToUse[0].title : "No Data"}
         </Typography>
         <CardActions>
-          <a href={textToUse[0] && textToUse[0].link} style={{ textDecoration: "none" }}>
-            <Button size="small">Learn More</Button>
+          <a
+            href={textToUse[0] && textToUse[0].link}
+            style={{ textDecoration: "none" }}
+          >
+            <Button size="small" variant="outlined">
+              Learn More
+            </Button>
           </a>
         </CardActions>
         <br></br>
         <Typography variant="body2" component="p">
-          {textToUse[1] ? textToUse[1].title : "Unable to Retrieve Data"}
+          {textToUse[1] ? textToUse[1].title : "No Data"}
         </Typography>
         <CardActions>
-          <a href={textToUse[1] && textToUse[1].link} style={{ textDecoration: "none" }}>
-            <Button size="small">Learn More</Button>
+          <a
+            href={textToUse[1] && textToUse[1].link}
+            style={{ textDecoration: "none" }}
+          >
+            <Button size="small" variant="outlined">
+              Learn More
+            </Button>
           </a>
         </CardActions>
         <br></br>
         <Typography variant="body2" component="p">
-          {textToUse[2] ? textToUse[2].title : "Unable to Retrieve Data"}
+          {textToUse[2] ? textToUse[2].title : "No Data"}
         </Typography>
         <CardActions>
-          <a href={textToUse[2] && textToUse[2].link} style={{ textDecoration: "none" }}>
-            <Button size="small">Learn More</Button>
+          <a
+            href={textToUse[2] && textToUse[2].link}
+            style={{ textDecoration: "none" }}
+          >
+            <Button size="small" variant="outlined">
+              Learn More
+            </Button>
           </a>
         </CardActions>
       </CardContent>

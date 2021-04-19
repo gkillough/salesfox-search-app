@@ -42,7 +42,15 @@ const useStyles = makeStyles((theme: any) => ({
   }
 }));
 
-export default function SearchForm({getNews, getIndustry, getCompany, getPersona, getWeather, setIsResultView}) {
+export default function SearchForm({
+  getNews,
+  getIndustry,
+  getCompany,
+  getPersona,
+  getWeather,
+  setIsResultView,
+  setIsDataLoading,
+}) {
   // TODO: add validation and ensure secure login
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm();
@@ -50,26 +58,25 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
   const [errorMessage, setErrorMessage] = useState(false);
 
   const onSubmit = async (data) => {
-    await getNews(data.interest || data.industry || "news", data.locationB || "75024");
-    await getIndustry(data.industry || "Computer Software", data.locationB || "75024");
-    await getCompany(data.company || "Google");
-    await getPersona(data.persona || "Software Developer", data.locationB || "75024");
-    await getWeather(data.locationB || "75024");
+    setIsDataLoading(true)
+    await getNews(data.interest || data.industry, data.locationB);
+    await getIndustry(data.industry, data.locationB);
+    await getCompany(data.company);
+    await getPersona(data.persona, data.locationB);
+    await getWeather(data.locationB);
     setIsResultView(true);
+    setIsDataLoading(false);
 
     ReactGA.event({
-      category: 'Search',
-      action: 'A search was performed'
+      category: "Search",
+      action: "A search was performed",
     });
-  }
+  };
 
   return (
     <>
       <Typography variant="h1" align="center" className={classes.title}>
         Salesfox Search
-      </Typography>
-      <Typography variant="body2" component="p" align="center">
-        Note: Results can take up to 15 seconds to retrieve.
       </Typography>
       <Grid
         component="form"
@@ -134,7 +141,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 fullWidth
                 id="company"
                 label="Company"
-                placeholder="Google"
+                placeholder="eg. Google"
                 name="company"
                 size="small"
                 inputRef={register}
@@ -167,7 +174,7 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 fullWidth
                 id="persona"
                 label="Persona"
-                placeholder="Software Developer"
+                placeholder="eg Software Developer"
                 autoFocus
                 size="small"
                 inputRef={register}
@@ -184,8 +191,8 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 variant="outlined"
                 fullWidth
                 id="industry"
-                label="Industry"
-                placeholder="Computer Software"
+                label=" Customer Industry"
+                placeholder="eg Computer Software"
                 name="industry"
                 size="small"
                 inputRef={register}
@@ -211,8 +218,8 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 variant="outlined"
                 fullWidth
                 id="locationB"
-                label="Zip Code*"
-                placeholder="75244"
+                label="Customer Zip Code*"
+                placeholder="eg 75244"
                 name="locationB"
                 size="small"
                 inputRef={register({ required: true })}
@@ -223,8 +230,8 @@ export default function SearchForm({getNews, getIndustry, getCompany, getPersona
                 variant="outlined"
                 fullWidth
                 id="interest"
-                label="Interest"
-                placeholder="Hockey"
+                label="Customer Interest"
+                placeholder="eg Hockey"
                 name="interest"
                 size="small"
                 inputRef={register}
