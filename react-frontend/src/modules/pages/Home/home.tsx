@@ -6,11 +6,13 @@ import {
   Typography,
   Link
 } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import NewsResults from 'modules/components/NewsResults/newsResults'
 import SearchForm from 'modules/components/SearchForm/searchForm'
 import ResultCard from "modules/components/ResultCard/resultCard"
 import CompanyResultCard from 'modules/components/CompanyResultCard/companyResultCard'
+import ComingSoon from 'modules/components/ComingSoon/ComingSoon'
 // import {getNews} from 'modules/api/api'
 import { makeStyles } from "@material-ui/core/styles";
 import ReactGA from 'react-ga';
@@ -47,6 +49,7 @@ export default function Home() {
   const [PersonaResults, setPersonaResults] = useState([]);
   const [weatherResults, setWeatherResults] = useState([]);
   const [isResultView, setIsResultView] = useState(false);
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   ReactGA.pageview('/');
 
@@ -142,58 +145,64 @@ export default function Home() {
 
   return (
     <Container maxWidth="lg">
-      {isResultView ? (
-        <div>
-          <div className={classes.topRow}>
-            <Grid xs={3}>
-              <ResultCard title="Prospect Results" text="COMING SOON" />
-            </Grid>
-            <Grid xs={3}>
-                <CompanyResultCard title="Company Results" data={companyResults} />
-            </Grid>
-            <Grid xs={3}>
+      <>
+        {isDataLoading && <CircularProgress />}
+        {isResultView ? (
+          <div>
+            <div className={classes.topRow}>
+              <Grid xs={3}>
+                <ComingSoon title="Prospect Results"/>
+              </Grid>
+              <Grid xs={3}>
+                <CompanyResultCard
+                  title="Company Results"
+                  data={companyResults}
+                />
+              </Grid>
+              <Grid xs={3}>
                 <NewsResults
                   title="Location Results"
                   text={newsResults}
                   weather={weatherResults}
                   weatherIcon={weatherResults}
                 />
-            </Grid>
-          </div>
-          <div className={classes.topRow}>
-            <Grid xs={3}>
+              </Grid>
+            </div>
+            <div className={classes.topRow}>
+              <Grid xs={3}>
                 <ResultCard title="Persona Results" text={PersonaResults} />
-            </Grid>
-            <Grid xs={3}>
-              <ResultCard title="Interest Results" text="COMING SOON" />
-            </Grid>
-            <Grid xs={3}>
+              </Grid>
+              <Grid xs={3}>
+                <ComingSoon title="Interest Results" />
+              </Grid>
+              <Grid xs={3}>
                 <ResultCard title="Market Results" text={industryResults} />
-            </Grid>
+              </Grid>
+            </div>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              disableElevation
+              onClick={() => setIsResultView(false)}
+            >
+              Search Again
+            </Button>
           </div>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            disableElevation
-            onClick={() => setIsResultView(false)}
-          >
-            Search Again
-          </Button>
-        </div>
-      ) : (
-        <>
-          <SearchForm
-            getNews={getNews}
-            getIndustry={getIndustry}
-            getCompany={getCompany}
-            getPersona={getPersona}
-            getWeather={getWeather}
-            setIsResultView={setIsResultView}
-          />
-          {/* <Button
+        ) : (
+          <>
+            <SearchForm
+              getNews={getNews}
+              getIndustry={getIndustry}
+              getCompany={getCompany}
+              getPersona={getPersona}
+              getWeather={getWeather}
+              setIsResultView={setIsResultView}
+              setIsDataLoading={setIsDataLoading}
+            />
+            {/* <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -204,20 +213,21 @@ export default function Home() {
           >
             Find Triggers
           </Button> */}
-        </>
-      )}
-      <br/>
-      <Typography variant="body2" component="p" align="center">
-        <Link
-          color="inherit"
-          target="_blank"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSf-0rkzp6h2vFz0hTKMT9jVnWNjZmoBGpPSsq-uauxb8SJI8A/viewform"
-        >
-        Click Here To Provide Feedback
-        </Link>
-      </Typography>
-      <br/>
-      <br/>
+          </>
+        )}
+        <br />
+        <Typography variant="body2" component="p" align="center">
+          <Link
+            color="inherit"
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSf-0rkzp6h2vFz0hTKMT9jVnWNjZmoBGpPSsq-uauxb8SJI8A/viewform"
+          >
+            Click Here To Provide Feedback
+          </Link>
+        </Typography>
+        <br />
+        <br />
+      </>
     </Container>
   );
 }

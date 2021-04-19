@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 150,
-  },
+  }
 });
 
 export default function NewResults({ title, text, weather, weatherIcon }) {
@@ -37,11 +37,9 @@ export default function NewResults({ title, text, weather, weatherIcon }) {
           {title}
         </Typography>
         {weather[4] ? (
-          <CardMedia
-            className={classes.media}
-            image={weather[4].conditions[0].iconUrl}
-            title={weather[4].conditions[0].summary}
-          />
+          <Typography className={classes.pos} color="textSecondary">
+            {weather[4].conditions[0].summary}
+          </Typography>
         ) : (
           <Typography className={classes.pos} color="textSecondary">
             No Data
@@ -51,29 +49,35 @@ export default function NewResults({ title, text, weather, weatherIcon }) {
           Top Results:
         </Typography>
         <Typography variant="body2" component="p">
-          {text[0] ? text[0].title : "Unable to Retrieve Data"}
+          {text[0] ? text[0].title : "No Data"}
         </Typography>
         <CardActions>
           <a href={text[0] && text[0].link} style={{ textDecoration: "none" }}>
-            <Button size="small">Learn More</Button>
+            <Button size="small" variant="outlined">
+              Learn More
+            </Button>
           </a>
         </CardActions>
         <br></br>
         <Typography variant="body2" component="p">
-          {text[1] ? text[1].title : "Unable to Retrieve Data"}
+          {text[1] ? text[1].title : "No Data"}
         </Typography>
         <CardActions>
           <a href={text[1] && text[1].link} style={{ textDecoration: "none" }}>
-            <Button size="small">Learn More</Button>
+            <Button size="small" variant='outlined'>
+              Learn More
+            </Button>
           </a>
         </CardActions>
         <br></br>
         <Typography variant="body2" component="p">
-          {text[2] ? text[2].title : "Unable to Retrieve Data"}
+          {text[2] ? text[2].title : "No Data"}
         </Typography>
         <CardActions>
           <a href={text[2] && text[2].link} style={{ textDecoration: "none" }}>
-            <Button size="small">Learn More</Button>
+            <Button size="small" variant='outlined'>
+              Learn More
+            </Button>
           </a>
         </CardActions>
       </CardContent>
