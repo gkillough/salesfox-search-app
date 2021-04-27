@@ -140,7 +140,7 @@ export default function SearchForm({
                 variant="outlined"
                 fullWidth
                 id="company"
-                label="Company"
+                label="Customer Company"
                 placeholder="eg. Google"
                 name="company"
                 size="small"
