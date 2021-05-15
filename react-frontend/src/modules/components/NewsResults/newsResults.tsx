@@ -48,38 +48,27 @@ export default function NewResults({ title, text, weather, weatherIcon }) {
         <Typography className={classes.pos} color="textSecondary">
           Top Results:
         </Typography>
-        <Typography variant="body2" component="p">
-          {text[0] ? text[0].title : "No Data"}
-        </Typography>
-        <CardActions>
-          <a href={text[0] && text[0].link} style={{ textDecoration: "none" }}>
-            <Button size="small" variant="outlined">
-              Learn More
-            </Button>
-          </a>
-        </CardActions>
-        <br></br>
-        <Typography variant="body2" component="p">
-          {text[1] ? text[1].title : "No Data"}
-        </Typography>
-        <CardActions>
-          <a href={text[1] && text[1].link} style={{ textDecoration: "none" }}>
-            <Button size="small" variant='outlined'>
-              Learn More
-            </Button>
-          </a>
-        </CardActions>
-        <br></br>
-        <Typography variant="body2" component="p">
-          {text[2] ? text[2].title : "No Data"}
-        </Typography>
-        <CardActions>
-          <a href={text[2] && text[2].link} style={{ textDecoration: "none" }}>
-            <Button size="small" variant='outlined'>
-              Learn More
-            </Button>
-          </a>
-        </CardActions>
+        {!!text.length ? (
+          text.map((item) => (
+            <>
+              <Typography variant="body2" component="p">
+                {item.title}
+              </Typography>
+              <CardActions>
+                <a href={item.link} style={{ textDecoration: "none" }}>
+                  <Button size="small" variant="outlined">
+                    Learn More
+                  </Button>
+                </a>
+              </CardActions>
+              <br></br>
+            </>
+          ))
+        ) : (
+          <Typography variant="body2" component="p">
+            No Data
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );

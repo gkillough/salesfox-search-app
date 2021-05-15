@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 export default function ResultCard({title, text}) {
   const classes = useStyles();
 
-  const textToUse = text || {};
+  const textToUse = text || [];
 
   return (
     <Card className={classes.root}>
@@ -37,47 +37,27 @@ export default function ResultCard({title, text}) {
         <Typography className={classes.pos} color="textSecondary">
           Top Results:
         </Typography>
-        <Typography variant="body2" component="p">
-          {textToUse[0] ? textToUse[0].title : "No Data"}
-        </Typography>
-        <CardActions>
-          <a
-            href={textToUse[0] && textToUse[0].link}
-            style={{ textDecoration: "none" }}
-          >
-            <Button size="small" variant="outlined">
-              Learn More
-            </Button>
-          </a>
-        </CardActions>
-        <br></br>
-        <Typography variant="body2" component="p">
-          {textToUse[1] ? textToUse[1].title : "No Data"}
-        </Typography>
-        <CardActions>
-          <a
-            href={textToUse[1] && textToUse[1].link}
-            style={{ textDecoration: "none" }}
-          >
-            <Button size="small" variant="outlined">
-              Learn More
-            </Button>
-          </a>
-        </CardActions>
-        <br></br>
-        <Typography variant="body2" component="p">
-          {textToUse[2] ? textToUse[2].title : "No Data"}
-        </Typography>
-        <CardActions>
-          <a
-            href={textToUse[2] && textToUse[2].link}
-            style={{ textDecoration: "none" }}
-          >
-            <Button size="small" variant="outlined">
-              Learn More
-            </Button>
-          </a>
-        </CardActions>
+        {!!textToUse.length ? (
+          textToUse.map((item) => (
+            <>
+              <Typography variant="body2" component="p">
+                {item.title}
+              </Typography>
+              <CardActions>
+                <a href={item.link} style={{ textDecoration: "none" }}>
+                  <Button size="small" variant="outlined">
+                    Learn More
+                  </Button>
+                </a>
+              </CardActions>
+              <br></br>
+            </>
+          ))
+        ) : (
+          <Typography variant="body2" component="p">
+            No Data
+          </Typography>
+        )}
       </CardContent>
     </Card>
   );
