@@ -144,7 +144,7 @@ export default function Home() {
       }
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <>
         {isDataLoading && <CircularProgress />}
         {isResultView ? (
