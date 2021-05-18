@@ -49,7 +49,7 @@ def get_news():
     query = flask.request.args.get('q')
     zip_code = flask.request.args.get('zip_code')
 
-    if query is None:
+    if is_input_empty(query):
         flask.abort(400, "The 'q' query param is required")
 
     return salesfox_news_search_client.search(query, zip_code)
@@ -65,7 +65,7 @@ def get_industry_news():
     query = flask.request.args.get('q')
     zip_code = flask.request.args.get('zip_code')
 
-    if query is None:
+    if is_input_empty(query):
         flask.abort(400, "The 'q' query param is required")
 
     modified_query = f"{query} industry"
@@ -83,7 +83,7 @@ def find_persona_news():
     query = flask.request.args.get('q')
     zip_code = flask.request.args.get('zip_code')
 
-    if query is None:
+    if is_input_empty(query):
         flask.abort(400, "The 'q' query param is required")
 
     modified_query = f"how to succeed as a \"{query}\""
@@ -98,7 +98,7 @@ def find_persona_news():
 @app.route("/api/companies")
 def find_company():
     company_name = flask.request.args.get('name')
-    if company_name is None:
+    if is_input_empty(company_name):
         flask.abort(400, "The 'name' query param is required")
     return company_search_client.find_by_name(company_name)
 
@@ -110,9 +110,13 @@ def find_company():
 @app.route("/api/weather")
 def find_historical_weather():
     zip_code = flask.request.args.get('zip_code')
-    if zip_code is None:
+    if is_input_empty(zip_code):
         flask.abort(400, "The 'zip_code' query param is required")
     return salesfox_weather_client.five_day(zip_code)
+
+
+def is_input_empty(query=None):
+    return query is None or query == '' or query.isspace()
 
 
 # For running flask locally with python
