@@ -87,7 +87,8 @@ export default function Home() {
       }
 
       async function getCompany(keyword) {
-        await fetch(
+        if(!!keyword.legth){
+          await fetch(
           `https://search-beta.salesfox.ai/api/companies?name=${keyword}`
         )
           .then((res) => res.json())
@@ -99,7 +100,7 @@ export default function Home() {
               console.log(error);
             }
           );
-
+        }
       }
 
       async function getPersona(keyword, location) {
