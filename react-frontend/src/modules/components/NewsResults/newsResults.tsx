@@ -48,7 +48,7 @@ export default function NewResults({ title, text, weather, weatherIcon }) {
         <Typography className={classes.pos} color="textSecondary">
           Top Results:
         </Typography>
-        {!!text.length ? (
+        {text.length ? (
           text.map((item) => (
             <>
               <Typography variant="body2" component="p">

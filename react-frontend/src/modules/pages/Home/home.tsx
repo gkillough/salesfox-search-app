@@ -87,7 +87,7 @@ export default function Home() {
       }
 
       async function getCompany(keyword) {
-        if(!!keyword.legth){
+        if(!!keyword.length){
           await fetch(
           `https://search-beta.salesfox.ai/api/companies?name=${keyword}`
         )
