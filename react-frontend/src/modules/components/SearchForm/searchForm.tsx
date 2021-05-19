@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 const uglyOrange = '#e14536'
 const creamSnow = '#FAF8F8'
@@ -67,10 +67,10 @@ export default function SearchForm({
     setIsResultView(true);
     setIsDataLoading(false);
 
-    ReactGA.event({
-      category: "Search",
-      action: "A search was performed",
-    });
+    // ReactGA.event({
+    //   category: "Search",
+    //   action: "A search was performed",
+    // });
   };
 
   return (

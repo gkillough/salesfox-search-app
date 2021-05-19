@@ -37,7 +37,7 @@ export default function ResultCard({title, text}) {
         <Typography className={classes.pos} color="textSecondary">
           Top Results:
         </Typography>
-        {!!textToUse.length ? (
+        {textToUse.length ? (
           textToUse.map((item) => (
             <>
               <Typography variant="body2" component="p">

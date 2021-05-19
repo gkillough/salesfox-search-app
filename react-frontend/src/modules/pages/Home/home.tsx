@@ -15,7 +15,7 @@ import CompanyResultCard from 'modules/components/CompanyResultCard/companyResul
 import ComingSoon from 'modules/components/ComingSoon/ComingSoon'
 // import {getNews} from 'modules/api/api'
 import { makeStyles } from "@material-ui/core/styles";
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 const uglyOrange = "#e14536";
 const creamSnow = "#FAF8F8";
@@ -51,7 +51,7 @@ export default function Home() {
   const [isResultView, setIsResultView] = useState(false);
   const [isDataLoading, setIsDataLoading] = useState(false);
 
-  ReactGA.pageview('/');
+  // ReactGA.pageview('/');
 
 
       async function getNews(keyword, location) {
@@ -87,7 +87,7 @@ export default function Home() {
       }
 
       async function getCompany(keyword) {
-        if(!!keyword.legth){
+        if(!!keyword.length){
           await fetch(
           `https://search-beta.salesfox.ai/api/companies?name=${keyword}`
         )
