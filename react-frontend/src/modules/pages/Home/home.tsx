@@ -55,6 +55,7 @@ export default function Home() {
 
 
       async function getNews(keyword, location) {
+        if(!!keyword.length){
         await fetch(
           `https://search-beta.salesfox.ai/api/news?q=${keyword}&zip_code=${location}`
         )
@@ -67,10 +68,12 @@ export default function Home() {
               console.log(error);
             }
           );
+        }
 
       }
 
       async function getIndustry(keyword, location) {
+        if(!!keyword.length){
         await fetch(
           `https://search-beta.salesfox.ai/api/industry?q=${keyword}&zip_code=${location}`
         )
@@ -83,6 +86,7 @@ export default function Home() {
               console.log(error);
             }
           );
+        }
 
       }
 
@@ -104,6 +108,7 @@ export default function Home() {
       }
 
       async function getPersona(keyword, location) {
+        if(!!keyword.length){
         await fetch(
           `https://search-beta.salesfox.ai/api/persona?q=${keyword}&zip_code=${location}`
         )
@@ -116,6 +121,7 @@ export default function Home() {
               console.log(error);
             }
           );
+        }
 
       }
 

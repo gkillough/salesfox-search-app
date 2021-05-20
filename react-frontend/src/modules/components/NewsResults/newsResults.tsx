@@ -30,6 +30,8 @@ const useStyles = makeStyles({
 export default function NewResults({ title, text, weather, weatherIcon }) {
   const classes = useStyles();
 
+  const textToUse = text || [];
+
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -48,8 +50,8 @@ export default function NewResults({ title, text, weather, weatherIcon }) {
         <Typography className={classes.pos} color="textSecondary">
           Top Results:
         </Typography>
-        {text.length ? (
-          text.map((item) => (
+        {!!textToUse.length ? (
+          textToUse.map((item) => (
             <>
               <Typography variant="body2" component="p">
                 {item.title}
